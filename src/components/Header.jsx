@@ -40,20 +40,20 @@ export default function Header() {
                         <InputBase
                             placeholder="Search topics"
                             className={classes.searchInput}
-                            startAdornment={<SearchIcon font-size={"small"} />}
+                            startAdornment={<SearchIcon fontSize={"small"} />}
                         />
                     </Grid>
                     <Grid item sm></Grid>
                     <Grid item>
                         <IconButton>
                             <Badge badgeContent={4} color="secondary">
-                                <ApartmentIcon font-size={"small"} />
+                                <ApartmentIcon fontSize={"small"} />
                             </Badge>
                         </IconButton>
 
                         <IconButton>
                             <Badge badgeContent={3} color="primary">
-                                <ChatBubbleOutlineIcon font-size={"small"} />
+                                <ChatBubbleOutlineIcon fontSize={"small"} />
                             </Badge>
                         </IconButton>
 
