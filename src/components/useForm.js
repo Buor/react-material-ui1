@@ -2,19 +2,33 @@ import { formatMs } from '@material-ui/core';
 import React, {useState} from 'react'
 import { makeStyles } from "@material-ui/core";
 
-export function useForm(initialFieldValues) {
+export function useForm(initialFieldValues,validateOnChange=false, validate) {
     const [values,setValues] = useState(initialFieldValues);
+    const [errors,setErrors] = useState({});
     const handleInputChange = (e) => {
         const {name, value} = e.target;
         setValues({
             ...values,
             [name]: value,
         });
+        if(validateOnChange) {
+            validate({[name]: value});
+        }
     };
+
+    const resetForm = () => {
+        console.log('Worked!');
+        setValues(initialFieldValues);
+        setErrors({});
+    }
+    
     return {
         values,
         setValues,
-        handleInputChange
+        handleInputChange,
+        errors,
+        setErrors,
+        resetForm
     }
 }
 
@@ -29,8 +43,9 @@ const useStyles = makeStyles((theme) => ({
 
 export function Form(props) {
     const classes = useStyles();
-    return ( <form className={classes.root} autoComplete="off">
-        {props.children}
+    const {children, ...other} = props;
+    return ( <form className={classes.root} autoComplete="off" {...other}>
+        {children}
     </form>
     )
 }
